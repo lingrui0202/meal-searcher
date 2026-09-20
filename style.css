@@ -1,0 +1,358 @@
+:root {
+  --primary: #ff7e5f;
+  --primary-dark: #ee684f;
+  --primary-soft: #fff1ee;
+  --text-dark: #2f2f2f;
+  --text-light: #6d6d6d;
+  --bg-color: #fff7f4;
+  --card-bg: #ffffff;
+  --shadow-soft: 0 12px 30px rgba(255, 126, 95, 0.18);
+  --shadow-strong: 0 18px 40px rgba(255, 126, 95, 0.28);
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fff9f7 0%, #ffeae4 100%);
+  color: var(--text-dark);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  padding: 40px 20px 60px;
+}
+
+.topbar {
+  max-width: 1100px;
+  margin: 0 auto 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--primary-dark);
+}
+
+.brand-box h1 {
+  font-size: clamp(1.7rem, 2vw, 2.6rem);
+  font-weight: 800;
+}
+
+.brand-icon {
+  font-size: 2rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px 12px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 126, 95, 0.1);
+  width: min(100%, 520px);
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  color: var(--text-dark);
+  padding: 8px 10px;
+}
+
+.search-box input::placeholder {
+  color: var(--text-light);
+}
+
+.search-box button {
+  border: none;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  border-radius: 999px;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: var(--transition);
+  box-shadow: var(--shadow-soft);
+}
+
+.search-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+.main-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.message-box {
+  margin-bottom: 18px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-weight: 600;
+  border-left: 5px solid var(--primary);
+}
+
+.message-box.error {
+  background: #fff2f2;
+  color: #d63d3d;
+  border-left-color: #d63d3d;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.meal-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid rgba(255, 126, 95, 0.06);
+}
+
+.meal-card:hover,
+.meal-card:focus-visible {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-strong);
+  outline: none;
+}
+
+.meal-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.meal-info {
+  padding: 18px 18px 20px;
+}
+
+.meal-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.meal-info p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meal-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(31, 26, 24, 0.48);
+}
+
+.modal-panel {
+  position: relative;
+  width: min(92vw, 850px);
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: var(--shadow-strong);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.close-btn,
+.back-btn {
+  position: absolute;
+  top: 18px;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.close-btn {
+  right: 18px;
+}
+
+.back-btn {
+  left: 18px;
+  width: auto;
+  padding: 0 18px;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.close-btn:hover,
+.back-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.modal-content {
+  display: flex;
+  max-height: 86vh;
+  overflow: auto;
+}
+
+.modal-content img {
+  width: 42%;
+  min-width: 260px;
+  object-fit: cover;
+}
+
+.meal-detail-body {
+  flex: 1;
+  padding: 72px 28px 30px;
+}
+
+.meal-tag {
+  display: inline-block;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 14px;
+}
+
+.meal-detail-body h2 {
+  font-size: clamp(1.8rem, 2vw, 2.5rem);
+  margin-bottom: 20px;
+}
+
+.detail-section {
+  margin-top: 20px;
+}
+
+.detail-section h3 {
+  margin-bottom: 10px;
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+}
+
+.detail-section p {
+  color: var(--text-dark);
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.ingredients-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.ingredients-list li {
+  background: #fff6f3;
+  color: var(--text-dark);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ingredients-list li i {
+  color: var(--primary);
+}
+
+.video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.video-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    justify-content: center;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-content img {
+    width: 100%;
+    min-width: auto;
+    height: 260px;
+  }
+
+  .meal-detail-body {
+    padding-top: 50px;
+  }
+}
